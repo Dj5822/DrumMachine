@@ -1,0 +1,21 @@
+#drum-pad-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto auto;
+  width: 40vw;
+  height: 40vh;
+}
+
+#display {
+  background-color: blue;
+  width:40vw;
+  height:10vh;
+}
+
+#drum-machine {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
