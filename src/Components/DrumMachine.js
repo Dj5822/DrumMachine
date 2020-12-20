@@ -2,17 +2,30 @@ import React from 'react';
 import '../Style/Style.css';
 
 class DrumMachine extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      text: ""
+    };
+
+    this.buttonClicked = this.buttonClicked.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+  }
+
   componentDidMount(){
     document.addEventListener("keydown", this.handleKeyPress.bind(this));
   }
 
   buttonClicked(event) {
+    this.setState({text: event.target.id});
     event.target.childNodes[1].play();
   }
 
   handleKeyPress = (event) => {
     var audioElement = document.getElementById(event.key.toUpperCase());
     if (audioElement){
+      this.setState({text: audioElement.parentElement.id});
       audioElement.play();
     }
   }
@@ -20,7 +33,7 @@ class DrumMachine extends React.Component {
   render() {
     return (
       <div id="drum-machine" onKeyDown={this.handleKeyPress} tabIndex="0">
-        <div id="display"></div>
+        <div id="display">{this.state.text}</div>
         <div id="drum-pad-container">
           <button className="drum-pad" id="c-key" onClick={this.buttonClicked}>Q
             <audio id="Q">
